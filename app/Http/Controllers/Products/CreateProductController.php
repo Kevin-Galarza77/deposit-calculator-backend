@@ -20,7 +20,7 @@ class CreateProductController extends Controller
 
         if (!$validator['status']) {
 
-            $messages = $validator['messaes'];
+            $messages = $validator['messages'];
         } else {
 
             $product = new Product();
@@ -34,7 +34,7 @@ class CreateProductController extends Controller
 
                 $product->product_purchase_price = $request->get('product_purchase_price');
                 $product->product_sale_price     = $request->get('product_sale_price');
-                $product->product_status         = $request->get('product_status');
+                $product->product_status         = 1;
                 $product->product_name           = strtoupper($request->get('product_name'));
                 $product->product_img            = $request->get('product_img');
 
@@ -62,16 +62,14 @@ class CreateProductController extends Controller
             'product_name.required'             =>  'El nombre del producto es requerido',
             'product_sale_price.required'       =>  'El precio de venta del producto es requerido',
             'product_purchase_price.required'   =>  'El precio de compra del producto es requerido',
-            'product_img.required'              =>  'La url de la imagen del producto es requerido',
-            'product_status.required'           =>  'El estado del producto es requerido',
+            'product_img.required'              =>  'La url de la imagen del producto es requerido'
         ];
 
         $infoData = [
             'product_name'              =>  'required',
             'product_sale_price'        =>  'required',
             'product_purchase_price'    =>  'required',
-            'product_img'               =>  'required',
-            'product_status'            =>  'required'
+            'product_img'               =>  'required'
         ];
 
         $validator = Validator::make($data, $infoData, $messages);
