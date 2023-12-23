@@ -16,7 +16,7 @@ class ApiProductController extends Controller
 
     public function show($id, Request $request)
     {
-        $alert = 'No se pudo eliminar el producto, intente nuevamente';
+        $alert = 'No se pudo encontrar los productos, intente nuevamente';
         $status = false;
         $messages = [];
         $data = [];
