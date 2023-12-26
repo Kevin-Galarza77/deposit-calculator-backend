@@ -16,7 +16,7 @@ class ApiProductController extends Controller
 
     public function show($id, Request $request)
     {
-        $alert = 'No se pudo encontrar los productos, intente nuevamente';
+        $alert = 'No se pudo encontrar los productos, intente nuevamente.';
         $status = false;
         $messages = [];
         $data = [];
@@ -25,7 +25,7 @@ class ApiProductController extends Controller
             case 'allProducts':
                 $products = Product::where('product_status', 1)->get();
                 if (isset($products)) {
-                    $alert  = 'Se han encontrado los productos';
+                    $alert  = 'Se han encontrado los productos.';
                     $data   = $products;
                     $status = true;
                 }
@@ -48,7 +48,7 @@ class ApiProductController extends Controller
 
     public function destroy($id)
     {
-        $alert = 'No se pudo eliminar el producto, intente nuevamente';
+        $alert = 'No se pudo eliminar el producto, intente nuevamente.';
         $status = false;
         $messages = [];
         $data = [];
@@ -59,9 +59,9 @@ class ApiProductController extends Controller
             $product->product_status = 2;
 
             if ($product->save()) {
-                $alert = 'El producto se ha eliminado correctamente!';
-                $status = true;
-                $data =  ['product_id' => $product['product_id'], "product_status" => $product['product_status']];
+                $alert  =  'El producto se ha eliminado correctamente!';
+                $status =  true;
+                $data   =  ['product_id' => $product['product_id'], "product_status" => $product['product_status']];
             }
         }
 

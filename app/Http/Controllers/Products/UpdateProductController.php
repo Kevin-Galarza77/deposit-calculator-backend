@@ -11,7 +11,7 @@ class UpdateProductController extends Controller
 {
     public function update(Request $request, $id)
     {
-        $alert = 'No se pudo actualizar el producto, intente nuevamente';
+        $alert = 'No se pudo actualizar el producto, intente nuevamente.';
         $status = false;
         $messages = [];
         $data = [];

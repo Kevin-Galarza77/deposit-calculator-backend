@@ -1,32 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Weeks;
+namespace App\Http\Controllers\Week_details;
 
 use App\Http\Controllers\Controller;
-use App\Models\Week;
 use Illuminate\Http\Request;
+use App\Models\Week;
 
-class ApiWeekController extends Controller
+class ApiWeekDetailController extends Controller
 {
+
     public function store(Request $request)
     {
-        $week = new CreateWeekController();
-        return $week->store($request);
     }
 
     public function show($id, Request $request)
     {
-        $alert    = 'No se pudo encontrar las semanas, intente nuevamente.';
+        $alert    = 'No se pudo encontrar los detalles de la semana, intente nuevamente.';
         $status   = false;
         $messages = [];
         $data     = [];
 
         switch ($id) {
-            case 'AllWeeks':
-                $weeks = Week::all();
-                if (isset($weeks)) {
-                    $alert  = 'Se han encontrado las semanas';
-                    $data   = $weeks;
+            case 'AllWeekDetailsByWeek':
+                $week_details = Week::with('weekDetails')->find($request->get('week'));
+                if (isset($week_details)) {
+                    $alert  = 'Se han encontrado los detalles de la semanas';
+                    $data   = $week_details;
                     $status = true;
                 }
                 break;

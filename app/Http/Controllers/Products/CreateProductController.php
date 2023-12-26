@@ -11,7 +11,7 @@ class CreateProductController extends Controller
 {
     public function store(Request $request)
     {
-        $alert = 'No se pudo crear el producto, intente nuevamente';
+        $alert = 'No se pudo crear el producto, intente nuevamente.';
         $status = false;
         $messages = [];
         $data = [];
@@ -23,8 +23,6 @@ class CreateProductController extends Controller
             $messages = $validator['messages'];
         } else {
 
-            $product = new Product();
-
             $product_data = Product::where('product_name', strtoupper($request->get('product_name')))->first();
 
             if (isset($product_data)) {
@@ -32,6 +30,7 @@ class CreateProductController extends Controller
                 array_push($messages, 'El nombre ya se encuentra registrado en otro producto');
             } else {
 
+                $product = new Product();
                 $product->product_purchase_price = $request->get('product_purchase_price');
                 $product->product_sale_price     = $request->get('product_sale_price');
                 $product->product_status         = 1;
@@ -84,4 +83,5 @@ class CreateProductController extends Controller
             'messages'  =>  $messages
         ];
     }
+    
 }

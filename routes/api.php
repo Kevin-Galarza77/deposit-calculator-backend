@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Products\ApiProductController;
+use App\Http\Controllers\Week_details\ApiWeekDetailController;
 use App\Http\Controllers\Weeks\ApiWeekController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -24,8 +25,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::resource('product', ApiProductController::class);
     Route::resource('week', ApiWeekController::class);
-
-
-
+    Route::resource('week-detail', ApiWeekDetailController::class);
 
 });
