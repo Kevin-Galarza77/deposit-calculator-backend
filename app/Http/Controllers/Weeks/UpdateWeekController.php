@@ -7,12 +7,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Week;
 
-class CreateWeekController extends Controller
+class UpdateWeekController extends Controller
 {
 
-    public function store(Request $request)
+    public function update(Request $request,$id)
     {
-        $alert    = 'No se pudo crear la semana, intente nuevamente.';
+        $alert    = 'No se pudo actualizar la semana, intente nuevamente.';
         $status   = false;
         $messages = [];
         $data     = [];
@@ -26,17 +26,17 @@ class CreateWeekController extends Controller
 
             $data = Week::where('week_date', $request->get('week_date'))->first();
 
-            if (isset($data)) {
+            if (isset($data) && $data->week_id != $id) {
 
-                array_push($messages, 'La semana con esta fecha ya se encuentra registrada');
+                array_push($messages, 'La semana con esta fecha ya se encuentra registrada en otra semana');
             } else {
 
-                $week = new Week();
+                $week = Week::find($id);
                 $week->week_date    = $request->get('week_date');
                 $week->week_status  = 1;
 
-                if ($week->save()) {
-                    $alert = 'La semana se ha creado correctamente!';
+                if ($week->update()) {
+                    $alert = 'La semana se ha actualizado correctamente!';
                     $status = true;
                     $data = $week;
                 }
@@ -58,11 +58,13 @@ class CreateWeekController extends Controller
     {
         $status = true;
         $messages = [
-            'week_date.required'     =>  'La fecha de la semana es requerido'
+            'week_date.required'     =>  'La fecha de la semana es requerido',
+            'week_id.required'       =>  'La semana es requerida',   
         ];
 
         $infoData = [
-            'week_date'              =>  'required'
+            'week_date'              =>  'required',
+            'week_id'              =>  'required'
         ];
 
         $validator = Validator::make($data, $infoData, $messages);
