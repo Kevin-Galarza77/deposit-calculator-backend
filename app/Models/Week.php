@@ -15,4 +15,9 @@ class Week extends Model
     {
         return $this->hasMany(Week_details::class, 'week_id');
     }
+
+    public function creditDetails()
+    {
+        return $this->hasMany(CreditDetail::class, 'week_id');
+    }
 }

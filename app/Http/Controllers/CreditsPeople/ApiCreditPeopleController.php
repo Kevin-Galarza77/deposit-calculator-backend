@@ -31,6 +31,14 @@ class ApiCreditPeopleController extends Controller
                     $status = true;
                 }
                 break;
+            case 'AllOnlyPeople':
+                $people = CreditPeople::all();
+                if (isset($people)) {
+                    $alert  = 'Se han encontrado las personas.';
+                    $data   = $people;
+                    $status = true;
+                }
+                break;
         }
 
         return [

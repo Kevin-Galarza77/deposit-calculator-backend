@@ -4,6 +4,7 @@ use App\Http\Controllers\Products\ApiProductController;
 use App\Http\Controllers\Week_details\ApiWeekDetailController;
 use App\Http\Controllers\Weeks\ApiWeekController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CreditsDetail\ApiCreditDetailController;
 use App\Http\Controllers\CreditsPeople\ApiCreditPeopleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -28,4 +29,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('week', ApiWeekController::class);
     Route::resource('week-detail', ApiWeekDetailController::class);
     Route::resource('credit-people', ApiCreditPeopleController::class);
+    Route::resource('credit-detail', ApiCreditDetailController::class);
 });

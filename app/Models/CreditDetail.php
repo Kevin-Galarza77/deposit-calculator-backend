@@ -16,4 +16,9 @@ class CreditDetail extends Model
         return $this->belongsTo(CreditPeople::class, 'credit_people_id');
     }
 
+    public function Week()
+    {
+        return $this->belongsTo(Week::class, 'week_id');
+    }
+
 }

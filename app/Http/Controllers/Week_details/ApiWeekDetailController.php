@@ -25,7 +25,7 @@ class ApiWeekDetailController extends Controller
 
         switch ($id) {
             case 'AllWeekDetailsByWeek':
-                $week_details = Week::with('weekDetails')->find($request->get('week'));
+                $week_details = Week::with('weekDetails', 'creditDetails.creditPeople')->find($request->get('week'));
                 if (isset($week_details)) {
                     $alert  = 'Se han encontrado los detalles de la semanas';
                     $data   = $week_details;
