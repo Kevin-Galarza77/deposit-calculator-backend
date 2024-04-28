@@ -24,14 +24,15 @@ class CreateWeekController extends Controller
             $messages = $validator['messages'];
         } else {
 
-            $data = Week::where('week_date', $request->get('week_date'))->first();
+            $date = Week::where('week_date', $request->get('week_date'))->first();
 
-            if (isset($data)) {
+            if (isset($date)) {
 
-                array_push($messages, 'La semana con esta fecha ya se encuentra registrada');
+                array_push($messages, 'La semana con esta fecha ya se encuentra registrada.');
             } else {
 
                 $week = new Week();
+                $week->week_alias    = strtoupper($request->get('week_alias'));;
                 $week->week_date    = $request->get('week_date');
                 $week->week_status  = 1;
 
@@ -42,7 +43,6 @@ class CreateWeekController extends Controller
                 }
             }
         }
-
 
         return [
             'alert'     =>  $alert,

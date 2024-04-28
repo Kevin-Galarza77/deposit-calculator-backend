@@ -59,8 +59,8 @@ class ApiProductController extends Controller
             $product->product_status = 2;
 
             if ($product->save()) {
-                $alert  =  'El producto se ha eliminado correctamente!';
                 $status =  true;
+                $alert  =  'El producto se ha eliminado correctamente!';
                 $data   =  ['product_id' => $product['product_id'], "product_status" => $product['product_status']];
             }
         }

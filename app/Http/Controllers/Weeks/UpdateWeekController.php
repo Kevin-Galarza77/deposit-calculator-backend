@@ -32,6 +32,7 @@ class UpdateWeekController extends Controller
             } else {
 
                 $week = Week::find($id);
+                $week->week_alias   = strtoupper($request->get('week_alias'));
                 $week->week_date    = $request->get('week_date');
                 $week->week_status  = 1;
 
