@@ -34,7 +34,7 @@ class UpdateWeekDetailController extends Controller
             $detail->week_detail_product_purchase_price = $product->product_purchase_price;
 
             if ($detail->update()) {
-                $alert  = 'El detalle se ha creado correctamente!';
+                $alert  = 'El detalle se ha modificado correctamente!';
                 $status = true;
                 $data   = $detail;
             }
