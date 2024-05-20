@@ -14,6 +14,7 @@ class CreditPeople extends Model
 
     public function CreditDetail()
     {
-        return $this->hasMany(CreditDetail::class, 'credit_detail_id');
+        return $this->hasMany(CreditDetail::class, 'credit_people_id');
     }
+
 }

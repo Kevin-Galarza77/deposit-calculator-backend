@@ -23,13 +23,16 @@ class ApiCreditPeopleController extends Controller
         $data = [];
 
         switch ($id) {
-            case 'AllPeople':
-                $people = CreditPeople::with('CreditDetail')->get();
+            case 'AllPeopleWithCreditDetail':
+                
+                $people = CreditPeople::with('CreditDetail.week')->get();
+
                 if (isset($people)) {
                     $alert  = 'Se han encontrado las personas.';
                     $data   = $people;
                     $status = true;
                 }
+
                 break;
             case 'AllOnlyPeople':
                 $people = CreditPeople::all();
